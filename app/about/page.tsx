@@ -68,7 +68,7 @@ const AboutPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">About thryve</h1>
             <div className="w-20 h-1 bg-gradient-to-r from-thryve-teal to-thryve-light-teal mx-auto mb-6"></div>
             <p className="text-lg max-w-3xl mx-auto text-gray-700">
-              We're a team of digital enthusiasts dedicated to helping businesses grow through strategic marketing.
+              We&apos;re a team of digital enthusiasts dedicated to helping businesses grow through strategic marketing.
             </p>
           </div>
         </div>
@@ -82,13 +82,13 @@ const AboutPage = () => {
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <div className="w-16 h-1 bg-gradient-to-r from-thryve-teal to-thryve-light-teal mb-6"></div>
               <p className="text-gray-700 mb-4">
-                Founded in 2015, thryve began with a simple mission: to help businesses navigate and succeed in the ever-evolving digital landscape. We saw too many companies struggling with outdated marketing approaches that didn't deliver results.
+                Founded in 2015, thryve began with a simple mission: to help businesses navigate and succeed in the ever-evolving digital landscape. We saw too many companies struggling with outdated marketing approaches that didn&apos;t deliver results.
               </p>
               <p className="text-gray-700 mb-4">
                 What started as a small team of three has grown into a full-service marketing agency, but our core values remain the same. We believe in transparent communication, data-driven strategies, and building lasting relationships with our clients.
               </p>
               <p className="text-gray-700">
-                Today, we're proud to have helped hundreds of businesses across various industries grow their digital presence and achieve their marketing goals. Our approach combines creativity with analytics to develop strategies that not only look good but also deliver measurable results.
+                Today, we&apos;re proud to have helped hundreds of businesses across various industries grow their digital presence and achieve their marketing goals. Our approach combines creativity with analytics to develop strategies that not only look good but also deliver measurable results.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
@@ -136,7 +136,7 @@ const AboutPage = () => {
             <h2 className="text-3xl font-bold mb-4">Meet Our Team</h2>
             <div className="w-20 h-1 bg-gradient-to-r from-thryve-teal to-thryve-light-teal mx-auto mb-6"></div>
             <p className="text-lg max-w-2xl mx-auto text-gray-700">
-              We're a diverse group of creative thinkers, strategists, and digital experts passionate about marketing.
+              We&apos;re a diverse group of creative thinkers, strategists, and digital experts passionate about marketing.
             </p>
           </div>
 

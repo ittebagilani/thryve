@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CornerNav from "@/components/ui/corner-nav";
 
 
 const mont = Raleway({
@@ -28,7 +28,8 @@ export default function RootLayout({
       <body
         className={`${mont.className} antialiased`}
       >
-        <Navigation />
+        {/* <Navigation /> */}
+        <CornerNav />
         {children}
         <Footer />
       </body>

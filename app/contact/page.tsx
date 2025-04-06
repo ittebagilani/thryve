@@ -113,7 +113,7 @@ const ContactPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
             <div className="w-20 h-1 bg-gradient-to-r from-thryve-teal to-thryve-light-teal mx-auto mb-6"></div>
             <p className="text-lg max-w-3xl mx-auto text-gray-700">
-              Have a question or ready to start your next project? We'd love to hear from you.
+              Have a question or ready to start your next project? We&apos;d love to hear from you.
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ const ContactPage = () => {
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
               <p className="text-gray-600 mb-8">
-                Reach out to us through the contact form or use the information below to get in touch directly. We'll get back to you as soon as possible.
+                Reach out to us through the contact form or use the information below to get in touch directly. We&apos;ll get back to you as soon as possible.
               </p>
               
               <div className="space-y-6">

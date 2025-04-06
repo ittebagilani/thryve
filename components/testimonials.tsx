@@ -48,7 +48,7 @@ const TestimonialsSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">What Our Clients Say</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-slate-900 to-rose-500 mx-auto mb-6"></div>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Don't just take our word for it. Here's what our clients have to say about working with us.
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with us.
           </p>
         </div>
 
