@@ -112,7 +112,6 @@ const SlidingFeatureDisplay = ({
 const Content = ({
   setFeatureInView,
   featureInView,
-  ...props
 }: {
   setFeatureInView: Dispatch<SetStateAction<FeatureType>>;
   featureInView: FeatureType;
@@ -151,7 +150,7 @@ const Content = ({
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{ opacity: { opacity } as any }}
+          style={{ opacity }}
           className="md:opacity-[var(--opacity)]"
         >
           <span className="rounded-full bg-indigo-600 px-2 py-1.5 text-xs font-medium text-white">

@@ -2,15 +2,6 @@
 
 import { Dispatch, SetStateAction, useState } from "react";
 import { motion } from "framer-motion";
-import { IconType } from "react-icons";
-import {
-  SiAtlassian,
-  SiDribbble,
-  SiGrubhub,
-  SiKaggle,
-  SiSlack,
-  SiNike,
-} from "react-icons/si";
 
 const StackedCardTestimonials = () => {
   const [selected, setSelected] = useState(0);
