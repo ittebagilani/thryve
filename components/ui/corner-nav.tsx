@@ -1,9 +1,9 @@
 "use client";
 
 import { SiInstagram, SiLinkedin, SiYoutube } from "react-icons/si";
-import React, { Dispatch, ReactNode, SetStateAction, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 
 const CornerNav = () => {
   const [active, setActive] = useState(false);

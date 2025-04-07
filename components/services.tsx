@@ -3,7 +3,6 @@
 import { TrendingUp, Globe, Palette, MessageSquare, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
 
 const services = [
   {
