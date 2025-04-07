@@ -3,10 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import PageLayout from '@/components/page-layout';
-import { useToast } from '@/hooks/use-toast';
 
 const ContactPage = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -65,10 +63,10 @@ const ContactPage = () => {
     
     // Simulate form submission
     setTimeout(() => {
-      toast({
-        title: "Form submitted successfully!",
-        description: "We'll get back to you as soon as possible.",
-      });
+      // toast({
+      //   title: "Form submitted successfully!",
+      //   description: "We'll get back to you as soon as possible.",
+      // });
       
       setFormData({
         name: '',
