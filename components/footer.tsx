@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react"; // Using Facebook icon as a placeholder for TikTok
+import { MapPin, Phone, Mail } from "lucide-react"; // Using Facebook icon as a placeholder for TikTok
 import { SiInstagram, SiTiktok } from "react-icons/si";
 
 const Footer = () => {

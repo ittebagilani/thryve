@@ -1,5 +1,3 @@
-import React from "react";
-import Link from "next/link";
 import { FlipWords } from "./ui/flip-words";
 import NeuFollowButton from "./ui/neu-button";
 
