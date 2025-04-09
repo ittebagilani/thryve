@@ -12,8 +12,7 @@ const Footer = () => {
               <MapPin size={20} className="text-black" />
               <h4 className="text-lg font-semibold">Address</h4>
             </div>
-            <p className="mt-2 text-sm">Milton</p>
-            <p className="text-sm">Ontario, Canada</p>
+            <p className="mt-2 text-sm">Milton, Ontario</p>
           </div>
 
           {/* Phone */}
