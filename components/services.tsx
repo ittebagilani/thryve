@@ -120,7 +120,7 @@ const Services = ({ features = defaultFeatures }: ServicesProps) => {
           </span> */}
         <h2 className="mb-4 text-4xl font-bold text-slate-300 md:text-6xl">how we help you thryve</h2>
         <p className="mx-auto max-w-2xl text-lg text-slate-400">
-          We offer comprehensive solutions to help your business grow, connect with your audience, and thrive in today's
+          We offer comprehensive solutions to help your business grow, connect with your audience, and thrive in today&apos;s
           competitive market.
         </p>
       </motion.div>
