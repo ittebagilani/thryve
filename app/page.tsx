@@ -13,7 +13,7 @@ export default function Home() {
     {/* <ServicesSection /> */}
     {/* <TestimonialsSection /> */}
     <StackedCardTestimonials />
-    <CTASection />
+    {/* <CTASection /> */}
    </PageLayout>
   );
 }

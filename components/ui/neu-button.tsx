@@ -48,7 +48,7 @@ const NeuFollowButton = () => {
   };
 
   return (
-      <div className="mx-auto h-20 w-full max-w-72 bg-black">
+      <div className="mx-auto h-16 w-full max-w-48 bg-black">
         <motion.button
           ref={ref}
           style={{
@@ -57,7 +57,7 @@ const NeuFollowButton = () => {
           onMouseMove={handleMove}
           onMouseLeave={handleReset}
           onMouseDown={handleReset}
-          className="group flex h-full w-full items-center justify-between border-2 border-black bg-white px-8 text-xl font-semibold cursor-pointer"
+          className="group flex h-full w-full items-center justify-between border-2 border-black bg-white px-4 text-xl font-semibold cursor-pointer"
         >
           <Copy>get started</Copy>
           <Arrow />
@@ -81,7 +81,7 @@ const Copy = ({ children }: { children: string }) => {
 
 const Arrow = () => (
   <div className="pointer-events-none flex h-6 w-6 overflow-hidden text-2xl">
-    <FiArrowRight className="shrink-0 -translate-x-full text-red-500 transition-transform duration-300 group-hover:translate-x-0" />
+    <FiArrowRight className="shrink-0 -translate-x-full text-blue-500 transition-transform duration-300 group-hover:translate-x-0" />
     <FiArrowRight className="shrink-0 -translate-x-full transition-transform duration-300 group-hover:translate-x-0" />
   </div>
 );

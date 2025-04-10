@@ -1,23 +1,26 @@
-"use client"
+"use client";
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowUpRight, ChevronDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
-  const containerRef = useRef(null)
+  const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[100vh] w-full overflow-hidden bg-slate-950 text-white">
+    <section
+      ref={containerRef}
+      className="relative min-h-[100vh] w-full overflow-hidden bg-slate-950 text-white"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-navy-900 to-slate-950 opacity-70" />
@@ -26,7 +29,10 @@ export default function Hero() {
       </div>
 
       <div className="container relative mx-auto flex h-screen flex-col items-center justify-center px-4 md:px-6">
-        <motion.div style={{ opacity, scale, y }} className="flex w-full max-w-5xl flex-col items-center">
+        <motion.div
+          style={{ opacity, scale, y }}
+          className="flex w-full max-w-5xl flex-col items-center"
+        >
           {/* Floating elements */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -70,8 +76,10 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="relative"
             >
-              <span className="text-5xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-9xl">
-                <span className="bg-gradient-to-t from-slate-100 via-slate-200 to-blue-950 bg-clip-text">thryve</span>
+              <span className="text-7xl font-extrabold tracking-tight text-transparent sm:text-7xl md:text-[150px]">
+                <span className="bg-gradient-to-t from-cyan-100 to-blue-400 bg-clip-text text-transparent">
+                  thryve
+                </span>
               </span>
               {/* <div className="absolute -right-4 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-xs font-bold text-white sm:-right-6 sm:-top-3 sm:h-8 sm:w-8 sm:text-sm">
                 ™
@@ -85,8 +93,9 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mb-10 max-w-2xl text-center text-lg text-slate-300 md:text-xl"
           >
-            We transform ambitious brands through strategic marketing, creative excellence, and data-driven solutions
-            that deliver measurable growth.
+            we transform ambitious brands through strategic marketing, creative
+            excellence, and data-driven solutions that deliver measurable
+            growth.
           </motion.p>
 
           <motion.div
@@ -95,16 +104,25 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="flex flex-col space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0"
           >
-            <Button size="lg" className="group bg-blue-600 hover:bg-blue-700 cursor-pointer">
-              Start Your Journey
+            <Button
+              size="lg"
+              className="group bg-blue-600 hover:bg-blue-700 cursor-pointer"
+              onClick={() => {
+                window.location.href = "/contact";
+              }}
+            >
+              start your journey
               <ArrowUpRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Button>
             <Button
               variant="outline"
               size="lg"
               className="border-blue-800 bg-blue-900/20 text-blue-100 hover:bg-blue-900/30 hover:text-blue-50 cursor-pointer"
+              onClick={() => {
+                window.location.href = "/services";
+              }}
             >
-              Explore Services
+              explore services
             </Button>
           </motion.div>
 
@@ -116,10 +134,10 @@ export default function Hero() {
             className="mt-16 grid w-full grid-cols-2 gap-4 border-t border-blue-900/30 pt-8 md:grid-cols-4"
           >
             {[
-              { value: "20+", label: "Team Members" },
-              { value: "10+", label: "Clients Worldwide" },
-              { value: "94%", label: "Client Retention" },
-              { value: "100%", label: "Client Satisfaction" },
+              { value: "20+", label: "team members" },
+              { value: "10+", label: "clients" },
+              { value: "94%", label: "client retention" },
+              { value: "100%", label: "client satisfaction" },
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -128,14 +146,18 @@ export default function Hero() {
                 transition={{ delay: 1.2 + index * 0.1 }}
                 className="flex flex-col items-center justify-center space-y-1 text-center"
               >
-                <span className="text-2xl font-bold text-blue-400 md:text-3xl">{stat.value}</span>
-                <span className="text-xs text-slate-400 md:text-sm">{stat.label}</span>
+                <span className="text-2xl font-bold text-blue-400 md:text-3xl">
+                  {stat.value}
+                </span>
+                <span className="text-xs text-slate-400 md:text-sm">
+                  {stat.label}
+                </span>
               </motion.div>
             ))}
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Scroll indicator
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -143,11 +165,14 @@ export default function Hero() {
           className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center space-y-2"
         >
           <span className="text-xs text-slate-400">Scroll to explore</span>
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+          >
             <ChevronDown className="h-5 w-5 text-blue-400" />
           </motion.div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
-  )
+  );
 }
