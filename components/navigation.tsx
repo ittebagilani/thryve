@@ -1,98 +1,129 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { FiMenu, FiX } from "react-icons/fi";
+import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 250 ? true : false);
+  });
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950 bg-opacity-95 backdrop-blur-sm shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
-            <Link href="/" className="flex-shrink-0">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-slate-900 to-rose-500 bg-clip-text text-transparent">
-                thryve
-              </h1>
-            </Link>
-          </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              <Link href="/" className="text-slate-700 hover:text-rose-500 transition-colors">
-                Home
-              </Link>
-              <Link href="/about" className="text-slate-700 hover:text-rose-500 transition-colors">
-                About
-              </Link>
-              <Link href="/services" className="text-slate-700 hover:text-rose-500 transition-colors">
-                Services
-              </Link>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  className="border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white transition-colors"
-                >
-                  Contact Us
-                </Button>
-              </Link>
-            </div>
-          </div>
-          <div className="md:hidden">
-            <button
-              onClick={toggleMenu}
-              className="bg-white p-2 rounded-md text-slate-700 hover:text-rose-500 focus:outline-none"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+    <nav
+      className={`fixed top-0 z-50 w-full px-6 text-white 
+      transition-all duration-300 ease-out lg:px-12
+      ${scrolled ? "bg-slate-950 py-3 shadow-xl" : "bg-slate-950/80 backdrop-blur-sm py-6 shadow-none"}`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <Logo />
+        <div className="hidden gap-6 lg:flex">
+          <Links />
+          <CTAs />
         </div>
+        <MobileMenu />
       </div>
-
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
-            <Link
-              href="/"
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-rose-500 hover:bg-gray-50"
-              onClick={toggleMenu}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-rose-500 hover:bg-gray-50"
-              onClick={toggleMenu}
-            >
-              About
-            </Link>
-            <Link
-              href="/services"
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-rose-500 hover:bg-gray-50"
-              onClick={toggleMenu}
-            >
-              Services
-            </Link>
-            <Link
-              href="/contact"
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-rose-500 hover:bg-gray-50"
-              onClick={toggleMenu}
-            >
-              Contact
-            </Link>
-          </div>
-        </div>
-      )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navigation
+const Logo = ({ color = "white" }: { color?: string }) => {
+  return (
+    <Link href="/" className="flex items-center gap-2">
+      <h1
+        className={`text-2xl bg-gradient-to-t from-cyan-100 to-blue-400 bg-clip-text text-transparent font-bold`}
+      >
+        thryve
+      </h1>
+    </Link>
+  );
+};
 
+const Links = () => {
+  return (
+    <div className="flex items-center gap-6">
+      {LINKS.map((link) => (
+        <Link
+          key={link.text}
+          href={link.href}
+          className="text-slate-300 hover:text-cyan-400 transition-colors"
+        >
+          {link.text}
+        </Link>
+      ))}
+    </div>
+  );
+};
+
+const CTAs = () => {
+  return (
+    <div className="flex items-center gap-3">
+      <Link href="/contact">
+        <Button
+          variant="outline"
+          className="bg-blue-600 hover:bg-blue-700 cursor-pointer border-transparent text-white hover:text-white transition-colors"
+        >
+          contact us
+        </Button>
+      </Link>
+    </div>
+  );
+};
+
+const MobileMenu = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="block lg:hidden">
+      <button onClick={() => setOpen(true)} className="block text-3xl">
+        <FiMenu />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ x: "100vw" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100vw" }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
+            className="fixed left-0 top-0 flex h-screen w-full flex-col bg-white"
+          >
+            <div className="flex items-center justify-between p-6">
+              <Logo color="black" />
+              <button onClick={() => setOpen(false)}>
+                <FiX className="text-3xl text-slate-950" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto bg-neutral-100 p-6 flex flex-col items-end space-y-4">
+              {LINKS.map((link) => (
+                <Link
+                  key={link.text}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="text-2xl font-semibold text-slate-950 hover:text-cyan-800 text-right"
+                >
+                  {link.text}
+                </Link>
+              ))}
+              <div className="pt-2">
+                <CTAs />
+              </div>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
+
+const LINKS = [
+  { text: "home", href: "/" },
+  { text: "services", href: "/services" },
+  { text: "about", href: "/about" },
+];
+
+export default Navigation;

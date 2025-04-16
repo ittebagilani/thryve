@@ -124,23 +124,16 @@ const Services = ({ features = defaultFeatures }: ServicesProps) => {
   const isInView = useInView(sectionRef, { once: true, margin: "-10%" });
 
   return (
-    <div ref={sectionRef} className="relative bg-slate-950 py-16 md:py-24">
+    <div ref={sectionRef} className="relative bg-slate-950 py-16 md:py-24 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7 }}
-        className="mx-auto mb-16 max-w-4xl text-center"
+        className="mx-auto mb-16 max-w-4xl text-center px-4"
       >
-        {/* <span className="mb-3 inline-block rounded-full bg-indigo-100 px-3 py-1 text-sm font-medium text-indigo-800">
-            Our Services
-          </span> */}
-        <h2 className="mb-4 text-6xl font-bold bg-gradient-to-t from-cyan-100 to-blue-400 text-transparent bg-clip-text md:text-8xl">
+        <h2 className="mb-4 text-5xl sm:text-6xl font-bold bg-gradient-to-t from-cyan-100 to-blue-400 text-transparent bg-clip-text md:text-8xl leading-tight">
           how we help
         </h2>
-        {/* <p className="mx-auto max-w-2xl text-lg text-slate-400">
-          We offer comprehensive solutions to help your business grow, connect
-          with your audience, and thrive in today&apos;s competitive market.
-        </p> */}
       </motion.div>
 
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -186,9 +179,7 @@ const FeatureSection = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
-                {/* <span className="mb-2 inline-block rounded-full bg-indigo-600/90 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                  {feature.callout}
-                </span> */}
+                {/* Callout removed as in original code */}
               </div>
             </>
           ) : (
@@ -208,34 +199,15 @@ const FeatureSection = ({
         transition={{ duration: 0.7, delay: 0.4 }}
         className="w-full md:w-1/2"
       >
-        <p className="mb-3 text-4xl font-bold bg-gradient-to-t from-cyan-100 to-blue-400 bg-clip-text text-transparent md:text-5xl">
+        <p className="mb-3 text-3xl sm:text-4xl font-bold bg-gradient-to-t from-cyan-100 to-blue-400 bg-clip-text text-transparent md:text-5xl leading-tight tracking-tight break-words hyphens-auto">
           {feature.title}
         </p>
         <p className="mb-6 text-slate-300">{feature.description}</p>
 
-        {/* Benefits list */}
-        {/* <div className="mb-8">
-          <h3 className="mb-3 text-lg font-semibold text-blue-300">
-            What we offer:
-          </h3>
-          <ul className="space-y-2">
-            {feature.benefits.map((benefit, idx) => (
-              <motion.li
-                key={idx}
-                initial={{ opacity: 0, x: -10 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.3, delay: 0.5 + idx * 0.1 }}
-                className="flex items-start text-blue-100"
-              >
-                <span className="mr-2 mt-1 text-blue-300">•</span>
-                <span>{benefit}</span>
-              </motion.li>
-            ))}
-          </ul>
-        </div> */}
+        {/* Benefits list - commented out as in original */}
 
         {/* Stats */}
-        <div className="mb-8 flex space-x-8">
+        <div className="mb-8 flex flex-wrap gap-8">
           {feature.stats.map((stat, idx) => (
             <motion.div
               key={idx}

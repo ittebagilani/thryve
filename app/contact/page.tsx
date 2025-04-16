@@ -1,106 +1,121 @@
-'use client';
+"use client"
 
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import PageLayout from '@/components/page-layout';
+import type React from "react"
+import { useState, useEffect } from "react"
+import { Mail, Phone, MapPin, Send, CheckCircle, XCircle } from "lucide-react"
+import PageLayout from "@/components/page-layout"
+
+
+
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    subject: '',
-    message: ''
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    message: "",
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   const validate = () => {
-    const newErrors: Record<string, string> = {};
-    
+    const newErrors: Record<string, string> = {}
+
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required"
     }
-    
+
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required"
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid"
     }
-    
+
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required"
     }
-    
-    return newErrors;
-  };
+
+    return newErrors
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }))
     }
-  };
+
+    // Reset submit status when user starts typing again
+    if (submitStatus !== "idle") {
+      setSubmitStatus("idle")
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    const validationErrors = validate();
+    e.preventDefault()
+
+    const validationErrors = validate()
     if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
+      setErrors(validationErrors)
+      setSubmitStatus("error")
+      return
     }
-    
-    setIsSubmitting(true);
-    
+
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
     // Simulate form submission
     setTimeout(() => {
-      // toast({
-      //   title: "Form submitted successfully!",
-      //   description: "We'll get back to you as soon as possible.",
-      // });
-      
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        subject: '',
-        message: ''
-      });
-      
-      setIsSubmitting(false);
-    }, 1500);
-  };
+      // Simulate successful submission (you can add error handling in real implementation)
+      const success = Math.random() > 0.2 // 80% chance of success for demo purposes
+
+      if (success) {
+        setSubmitStatus("success")
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          company: "",
+          subject: "",
+          message: "",
+        })
+      } else {
+        setSubmitStatus("error")
+      }
+
+      setIsSubmitting(false)
+    }, 1500)
+  }
 
   const contactInfo = [
     {
-      icon: <Mail size={24} className="text-thryve-teal" />,
+      icon: <Mail size={24} className="text-white/80" />,
       title: "Email",
-      info: "hello@thryveagency.com",
-      link: "mailto:hello@thryveagency.com"
+      info: "thryve.co2025@gmail.com",
+      link: "mailto:thryve.co2025@gmail.com",
     },
     {
-      icon: <Phone size={24} className="text-thryve-teal" />,
+      icon: <Phone size={24} className="text-white/80" />,
       title: "Phone",
-      info: "(555) 123-4567",
-      link: "tel:+15551234567"
+      info: "647-887-7586",
+      link: "tel:+6478877586",
     },
     {
-      icon: <MapPin size={24} className="text-thryve-teal" />,
+      icon: <MapPin size={24} className="text-white/80" />,
       title: "Office",
-      info: "123 Marketing Street, Digital City, 10001",
-      link: "https://maps.google.com"
-    }
-  ];
+      info: "Milton, Ontario",
+      link: "https://maps.google.com",
+    },
+  ]
 
   return (
     <PageLayout>
@@ -108,9 +123,11 @@ const ContactPage = () => {
       <section className="bg-thryve-gray pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+            <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-t from-cyan-100 to-blue-400 text-transparent bg-clip-text md:text-8xl leading-tight">
+              contact us
+            </h1>
             <div className="w-20 h-1 bg-gradient-to-r from-thryve-teal to-thryve-light-teal mx-auto mb-6"></div>
-            <p className="text-lg max-w-3xl mx-auto text-gray-700">
+            <p className="text-lg max-w-3xl mx-auto text-white">
               Have a question or ready to start your next project? We&apos;d love to hear from you.
             </p>
           </div>
@@ -124,39 +141,51 @@ const ContactPage = () => {
             {/* Contact Information */}
             <div className="lg:col-span-1">
               <h2 className="text-2xl font-semibold mb-6">Get In Touch</h2>
-              <p className="text-gray-600 mb-8">
-                Reach out to us through the contact form or use the information below to get in touch directly. We&apos;ll get back to you as soon as possible.
-              </p>
-              
+              {/* <p className="text-white mb-8">
+                reach out to us through the contact form or use the information below to get in touch directly. we&apos;ll get back to you as soon as possible.
+              </p> */}
+
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
                   <div key={index} className="flex items-start">
                     <div className="mt-1 mr-4">{item.icon}</div>
                     <div>
-                      <h3 className="font-medium text-gray-800">{item.title}</h3>
-                      <a href={item.link} className="text-thryve-light-teal hover:text-thryve-teal">{item.info}</a>
+                      <h3 className="font-medium text-white/50">{item.title}</h3>
+                      <a href={item.link} className="text-white hover:text-thryve-teal">
+                        {item.info}
+                      </a>
                     </div>
                   </div>
                 ))}
               </div>
-              
-              <div className="mt-12">
-                <h3 className="text-xl font-semibold mb-4">Office Hours</h3>
-                <p className="text-gray-600">Monday - Friday: 9am - 6pm</p>
-                <p className="text-gray-600">Saturday - Sunday: Closed</p>
-              </div>
             </div>
-            
+
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
-                
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-lg shadow-xl">
+                <h2 className="text-3xl font-semibold mb-6 text-white">Send Us a Message</h2>
+
+                {/* Success Message */}
+                {submitStatus === "success" && (
+                  <div className="mb-6 p-4 bg-green-900/30 border border-green-500 rounded-md flex items-center gap-3 text-green-300">
+                    <CheckCircle className="h-5 w-5 flex-shrink-0" />
+                    <p>Your message has been sent successfully! We&apos;ll get back to you soon.</p>
+                  </div>
+                )}
+
+                {/* Error Message (for form-wide errors) */}
+                {submitStatus === "error" && Object.keys(errors).length === 0 && (
+                  <div className="mb-6 p-4 bg-red-900/30 border border-red-500 rounded-md flex items-center gap-3 text-red-300">
+                    <XCircle className="h-5 w-5 flex-shrink-0" />
+                    <p>There was a problem sending your message. Please try again later.</p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                     {/* Name Field */}
                     <div>
-                      <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="name" className="block mb-2 text-sm font-medium text-white/70">
                         Full Name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -165,15 +194,17 @@ const ContactPage = () => {
                         type="text"
                         value={formData.name}
                         onChange={handleChange}
-                        className={`input-field ${errors.name ? 'border-red-500' : ''}`}
+                        className={`bg-transparent border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white placeholder:text-slate-400 transition-colors ${
+                          errors.name ? "border-red-500 focus:border-red-500" : ""
+                        }`}
                         placeholder="John Doe"
                       />
                       {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
                     </div>
-                    
+
                     {/* Email Field */}
                     <div>
-                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="email" className="block mb-2 text-sm font-medium text-white/70">
                         Email <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -182,15 +213,17 @@ const ContactPage = () => {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={`input-field ${errors.email ? 'border-red-500' : ''}`}
+                        className={`bg-transparent border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white placeholder:text-slate-400 transition-colors ${
+                          errors.email ? "border-red-500 focus:border-red-500" : ""
+                        }`}
                         placeholder="john@example.com"
                       />
                       {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                     </div>
-                    
+
                     {/* Phone Field */}
                     <div>
-                      <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="phone" className="block mb-2 text-sm font-medium text-white/70">
                         Phone Number
                       </label>
                       <input
@@ -199,14 +232,14 @@ const ContactPage = () => {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="input-field"
+                        className="bg-transparent border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white placeholder:text-slate-400 transition-colors"
                         placeholder="(555) 123-4567"
                       />
                     </div>
-                    
+
                     {/* Company Field */}
                     <div>
-                      <label htmlFor="company" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="company" className="block mb-2 text-sm font-medium text-white/70">
                         Company Name
                       </label>
                       <input
@@ -215,14 +248,14 @@ const ContactPage = () => {
                         type="text"
                         value={formData.company}
                         onChange={handleChange}
-                        className="input-field"
+                        className="bg-transparent border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white placeholder:text-slate-400 transition-colors"
                         placeholder="Your Company"
                       />
                     </div>
-                    
+
                     {/* Subject Field */}
                     <div className="sm:col-span-2">
-                      <label htmlFor="subject" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="subject" className="block mb-2 text-sm font-medium text-white/70">
                         Subject
                       </label>
                       <select
@@ -230,7 +263,7 @@ const ContactPage = () => {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        className="input-field"
+                        className="bg-slate-800 border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white rounded-t-md"
                       >
                         <option value="">Select a subject</option>
                         <option value="General Inquiry">General Inquiry</option>
@@ -240,10 +273,10 @@ const ContactPage = () => {
                         <option value="Other">Other</option>
                       </select>
                     </div>
-                    
+
                     {/* Message Field */}
                     <div className="sm:col-span-2">
-                      <label htmlFor="message" className="block mb-2 text-sm font-medium text-gray-700">
+                      <label htmlFor="message" className="block mb-2 text-sm font-medium text-white/70">
                         Message <span className="text-red-500">*</span>
                       </label>
                       <textarea
@@ -252,21 +285,25 @@ const ContactPage = () => {
                         rows={5}
                         value={formData.message}
                         onChange={handleChange}
-                        className={`input-field resize-none ${errors.message ? 'border-red-500' : ''}`}
+                        className={`bg-transparent border-0 border-b-2 border-slate-700 focus:border-b-2 focus:border-slate-700 focus:ring-0 w-full p-3 text-white placeholder:text-slate-400 transition-colors resize-none ${
+                          errors.message ? "border-red-500 focus:border-red-500" : ""
+                        }`}
                         placeholder="Tell us about your project or inquiry..."
                       />
                       {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                     </div>
                   </div>
-                  
+
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`btn-primary w-full flex items-center justify-center gap-2 ${
-                      isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                    className={`bg-gradient-to-r from-thryve-teal to-thryve-light-teal hover:from-thryve-light-teal hover:to-thryve-teal text-white font-medium py-3 px-6 rounded-md transition-all duration-300 w-full flex items-center justify-center gap-2 ${
+                      isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                     }`}
                   >
-                    {isSubmitting ? 'Sending...' : (
+                    {isSubmitting ? (
+                      "Sending..."
+                    ) : (
                       <>
                         Send Message <Send size={16} />
                       </>
@@ -292,7 +329,7 @@ const ContactPage = () => {
         ></iframe>
       </section>
     </PageLayout>
-  );
-};
+  )
+}
 
-export default ContactPage;
+export default ContactPage
